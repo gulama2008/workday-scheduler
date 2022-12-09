@@ -4,6 +4,8 @@
 $(function () {
   var currentDay = $("#currentDay");
   var date = dayjs();
+  var hour = date.format("hA")
+  
   function getCurrentDate() {   
     console.log(date);
     if (date.format("D") == 1 || date.format("D") == 21 || date.format("D") == 31) {
