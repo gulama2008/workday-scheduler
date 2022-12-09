@@ -3,8 +3,10 @@
 // in the html.
 $(function () {
   var currentDay = $("#currentDay");
+  var hour = $(".time-block");
+  console.log(hour);
   var date = dayjs();
-  var hour = date.format("hA")
+  var currentHour = date.format("hA")
   
   function getCurrentDate() {   
     console.log(date);
@@ -17,11 +19,24 @@ $(function () {
     } else {
       date = date.format("dddd, MMMM D[th]");
     }
-    return date;
+    currentDay.text(date);
+  }
+
+  function changeColorForTimeBlock() { 
+    if (hour.text() < currentHour) {
+      console.log(hour.text());
+      hour.addClass("past");
+    } else if (hour.text() == currentHour) {
+      console.log(hour.text());
+      hour.addClass("present");
+    } else { 
+      console.log(hour.text());
+      hour.addClass("future");
+    }
   }
   
   getCurrentDate();
-  currentDay.text(date);
+  changeColorForTimeBlock();
   // TODO: Add a listener for click events on the save button. This code should
   // use the id in the containing time-block as a key to save the user input in
   // local storage. HINT: What does `this` reference in the click listener
