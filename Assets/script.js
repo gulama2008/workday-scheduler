@@ -3,38 +3,40 @@
 // in the html.
 $(function () {
   var currentDay = $("#currentDay");
-  var hour = $(".time-block");
-  console.log(hour);
+  var timeBlock = $(".time-block");
   var date = dayjs();
-  var currentHour = date.format("hA")
-  
-  function getCurrentDate() {   
-    console.log(date);
-    if (date.format("D") == 1 || date.format("D") == 21 || date.format("D") == 31) {
-      date = date.format("dddd, MMMM D[st]");
+  var currentHour = date.format("H");
+  function getCurrentDate() {
+    var dateShow;
+    if (
+      date.format("D") == 1 ||
+      date.format("D") == 21 ||
+      date.format("D") == 31
+    ) {
+      dateShow = date.format("dddd, MMMM D[st]");
     } else if (date.format("D") == 2 || date.format("D") == 22) {
-      date = date.format("dddd, MMMM D[nd]");
+      dateShow = date.format("dddd, MMMM D[nd]");
     } else if (date.format("D") == 3 || date.format("D") == 23) {
-      date = date.format("dddd, MMMM D[rd]");
+      dateShow = date.format("dddd, MMMM D[rd]");
     } else {
-      date = date.format("dddd, MMMM D[th]");
+      dateShow = date.format("dddd, MMMM D[th]");
     }
-    currentDay.text(date);
+    currentDay.text(dateShow);
   }
 
-  function changeColorForTimeBlock() { 
-    if (hour.text() < currentHour) {
-      console.log(hour.text());
-      hour.addClass("past");
-    } else if (hour.text() == currentHour) {
-      console.log(hour.text());
-      hour.addClass("present");
-    } else { 
-      console.log(hour.text());
-      hour.addClass("future");
+  function changeColorForTimeBlock() {
+    for (i = 0; i < timeBlock.length; i++) {
+      var timeBlockHour = $(timeBlock[i]).attr("id").split("-")[1];
+      if (parseInt(currentHour) > parseInt(timeBlockHour)) {
+        $(timeBlock[i]).addClass("past");
+      } else if (parseInt(currentHour) > parseInt(timeBlockHour)) {
+        $(timeBlock[i]).addClass("present");
+      } else {
+        $(timeBlock[i]).addClass("future");
+      }
     }
   }
-  
+
   getCurrentDate();
   changeColorForTimeBlock();
   // TODO: Add a listener for click events on the save button. This code should
