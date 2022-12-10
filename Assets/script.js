@@ -29,7 +29,7 @@ $(function () {
       var timeBlockHour = $(timeBlock[i]).attr("id").split("-")[1];
       if (parseInt(currentHour) > parseInt(timeBlockHour)) {
         $(timeBlock[i]).addClass("past");
-      } else if (parseInt(currentHour) > parseInt(timeBlockHour)) {
+      } else if (parseInt(currentHour) == parseInt(timeBlockHour)) {
         $(timeBlock[i]).addClass("present");
       } else {
         $(timeBlock[i]).addClass("future");
