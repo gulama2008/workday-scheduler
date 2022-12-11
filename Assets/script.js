@@ -27,7 +27,7 @@ $(function () {
 
   // create a function of changing the color of time-blocks based on current hour
   function changeColorForTimeBlock() {
-    for (i = 0; i < timeBlock.length; i++) {
+    for (var i = 0; i < timeBlock.length; i++) {
       var timeBlockHour = $(timeBlock[i]).attr("id").split("-")[1];
       if (parseInt(currentHour) > parseInt(timeBlockHour)) {
         $(timeBlock[i]).addClass("past");
@@ -50,7 +50,7 @@ $(function () {
 
   // create function to load contents to the time block from local storage
   function getValueFromLocalStorage() { 
-    for (i = 0; i < timeBlock.length; i++) {
+    for (var i = 0; i < timeBlock.length; i++) {
       var text = localStorage.getItem($(timeBlock[i]).attr("id"));
       $(timeBlock[i]).children().eq(1).val(text); 
     }
